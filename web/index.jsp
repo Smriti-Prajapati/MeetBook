@@ -252,6 +252,13 @@
             <label for="contact_message" class="form-label">Message</label>
             <textarea id="contact_message" name="message" class="form-control" rows="4" required></textarea>
           </div>
+          <!-- Terms and Conditions Checkbox -->
+          <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="termsCheck" required />
+            <label class="form-check-label" for="termsCheck">
+              I agree to the <a href="terms.html" target="_blank">Terms and Conditions</a>
+            </label>
+          </div>
         </div>
         <div class="modal-footer">
           <button type="submit" class="btn btn-success w-100">Send Message</button>
@@ -261,31 +268,19 @@
   </div>
 </div>
 
-<!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
 <script>
-    // Background Slideshow
+    // Background images cycling logic
     const slides = document.querySelectorAll('.background-slide');
-    let currentSlide = 0;
+    let currentIndex = 0;
 
-    setInterval(() => {
-        slides[currentSlide].classList.remove('active');
-        currentSlide = (currentSlide + 1) % slides.length;
-        slides[currentSlide].classList.add('active');
-    }, 7000); // Change every 7 seconds
+    function cycleBackground() {
+        slides[currentIndex].classList.remove('active');
+        currentIndex = (currentIndex + 1) % slides.length;
+        slides[currentIndex].classList.add('active');
+    }
 
-    // Show Login modal if error
-    <% if (request.getParameter("error") != null) { %>
-        var loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
-        loginModal.show();
-    <% } %>
-
-    // Show Contact modal if contact=fail
-    <% if ("fail".equals(request.getParameter("contact"))) { %>
-        var contactModal = new bootstrap.Modal(document.getElementById('contactModal'));
-        contactModal.show();
-    <% } %>
+    setInterval(cycleBackground, 8000); // Change every 8 seconds
 </script>
 
 </body>
